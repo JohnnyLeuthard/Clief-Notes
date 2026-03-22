@@ -1,0 +1,78 @@
+# ==========================
+# macOS
+# ==========================
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# ==========================
+# Windows
+# ==========================
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# ==========================
+# Claude Code
+# ==========================
+# Local settings (machine-specific, may contain paths)
+.claude/settings.local.json
+# Claude memory (conversation-specific, not portable)
+.claude/projects/
+
+# ==========================
+# Pipeline output files
+# ==========================
+# Stage outputs are generated per-run and should not be committed.
+# The .gitkeep files preserve the folder structure; actual outputs are ignored.
+stages/*/output/*.sql
+stages/*/output/*.csv
+stages/*/output/*.md
+stages/*/output/*.json
+stages/*/output/*.xlsx
+# Catch nested stage paths (e.g., CyberArk/EVD/stages/)
+**/stages/*/output/*.sql
+**/stages/*/output/*.csv
+**/stages/*/output/*.md
+**/stages/*/output/*.json
+**/stages/*/output/*.xlsx
+# Don't ignore the .gitkeep placeholders
+!**/.gitkeep
+
+# ==========================
+# Sensitive / credentials
+# ==========================
+*.env
+.env.*
+credentials.json
+secrets.*
+*.pfx
+*.pem
+*.key
+
+# ==========================
+# PowerShell artifacts
+# ==========================
+*.pssc
+*.psrc
+
+# ==========================
+# Logs and temp files
+# ==========================
+*.log
+*.tmp
+*.temp
+*.bak
+*.swp
+*~
+
+# ==========================
+# IDE / Editor
+# ==========================
+.vscode/settings.json
+.vscode/launch.json
+.idea/
+*.code-workspace
