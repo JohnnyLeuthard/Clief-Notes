@@ -96,7 +96,7 @@ WHERE op.CAOPObjectPropertyName = 'Address'
 | Property Name | Notes |
 |--------------|------|
 | ColumnName | Column name (DB accounts) |
-| CPMDisabled | Whether CPM is disabled |
+| CPMDisabled | Whether CPM is disabled — see [eva_query_paterns.md](eva_query_paterns.md#boolean-style-properties-eg-cpmdisabled) |
 | CPMErrorDetails | Details of last CPM error |
 | CPMStatus | Current CPM status |
 | CreationMethod | How account was created |
