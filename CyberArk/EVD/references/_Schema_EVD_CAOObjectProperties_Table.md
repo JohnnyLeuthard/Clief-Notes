@@ -96,7 +96,7 @@ WHERE op.CAOPObjectPropertyName = 'Address'
 | Property Name | Notes |
 |--------------|------|
 | ColumnName | Column name (DB accounts) |
-| CPMDisabled | Whether CPM is disabled |
+| CPMDisabled | CPM disabled reason/state. **Any non-null, non-emptyvalue means CPM is disabled.** Do not filter for a spacific value (e.g. `'yes'`). Known values include `(CPM)MaxRetries, `(CPM)ManualDisabled`. Filter with `IS NOT NULL AND <>''` in HAVING clause. |
 | CPMErrorDetails | Details of last CPM error |
 | CPMStatus | Current CPM status |
 | CreationMethod | How account was created |
