@@ -21,4 +21,5 @@ This sub-workspace transforms natural language requests into validated vault dat
 - EAV query patterns (on-demand): `references/eva_query_paterns.md` — Join strategy and boolean property handling for CAObjectProperties pivots. Load when writing queries that pivot EAV properties.
 - Vendor schema (on-demand): `references/vendor_schema/_INDEX.md` — Out-of-box CyberArk EVD report definitions. Load individual files only when column meanings or table relationships need clarification during SQL generation. Environment schema always takes precedence for types and lengths.
 - System safe exclusions (on-demand): `references/system_safe_exclusions.md` — Default safe filters applied to all queries unless overridden.
+- Query templates (on-demand): `references/query_templates/_INDEX.md` — Pre-built SQL patterns for common CyberArk queries. Consult the index first, then load only the matching template.
 - Naming standards: `references/naming_standards.md`

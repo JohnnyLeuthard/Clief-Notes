@@ -134,6 +134,35 @@ Not every query needs Stage 3. If you just needed raw data, you're done after St
 
 ---
 
+## Using Templates
+
+The pipeline includes pre-built query templates for common CyberArk tasks. Instead of describing what you need from scratch, you can ask for a template by name:
+
+> "Run the stale accounts template"
+
+> "Use the CPM health template for Linux safes"
+
+> "Show me the password age template with a 60-day threshold"
+
+The AI will load the matching template, show you the SQL with any customization options, and proceed through the normal review gate. You can still modify the query before running it.
+
+### Available Templates
+
+| Template | What it answers |
+|----------|-----------------|
+| **Stale Accounts** | Accounts not checked out by a human in N days |
+| **CPM Health** | CPM disabled, failed, or errored accounts |
+| **Safe Owners** | Safe metadata, account counts, and user activity per safe |
+| **Account Inventory** | Account counts by safe, platform, or both |
+| **Platform Compliance** | Accounts with mismatched or missing platform assignments |
+| **Safe Summary** | Per-safe rollup: age, counts, last activity |
+| **Orphaned Accounts** | Accounts missing critical properties (platform, address, username) |
+| **Password Age** | Accounts with overdue password rotations |
+
+Each template is fully customizable — thresholds, safe filters, and output columns can all be adjusted based on your request.
+
+---
+
 ## Common Tasks
 
 ### Quick data pull (Stages 1-2 only)
@@ -183,7 +212,8 @@ EVD/
 ├── EVD.psd1                 <-- Connection config (fill in server names)
 ├── scripts/
 │   └── Invoke-EVDQuery.ps1  <-- The query execution script
-├── references/              <-- Schema and rules (AI reads these, you don't need to)
+├── references/              <-- Schema, rules, and query templates (AI reads these)
+│   └── query_templates/     <-- Pre-built SQL for common tasks
 └── stages/
     ├── 01_sql_gen/
     │   └── output/          <-- Generated SQL lands here
