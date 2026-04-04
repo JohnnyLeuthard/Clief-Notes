@@ -34,6 +34,15 @@ Final report
 
 Every stage stops and waits for your approval before moving on. Nothing runs without your say-so.
 
+### What you get
+
+| Stage | Output file | What it is |
+|-------|-------------|------------|
+| 1 — SQL Gen | `stages/01_sql_gen/output/query.sql` | Generated SQL — review before running |
+| 2 — Data Fetch | `stages/02_data_fetch/output/vault_data.csv` | Live vault data — open in Excel |
+| 3 — Compliance | `stages/03_parsing/output/compliance_report.md` | Flagged violations with rule IDs and severity |
+| 4 — Remediation | `stages/04_remediation/output/remediation_plan.md` | Prioritized action list with recommended fixes |
+
 ---
 
 ## Before You Start
@@ -132,6 +141,23 @@ If your request involves checking naming standards or compliance, tell the AI to
 
 Not every query needs Stage 3. If you just needed raw data, you're done after Stage 2.
 
+**What to check:**
+- Are the findings accurate? Spot-check a few flagged accounts in PVWA to confirm.
+- Do the rule IDs reference the right naming rules?
+
+If something looks wrong, tell the AI what to investigate. When the report looks accurate, tell it to proceed.
+
+### Stage 4: Remediation plan (optional)
+
+If Stage 3 found compliance issues and you want a prioritized action list, tell the AI to proceed to Stage 4. It will:
+1. Read the compliance report from Stage 3
+2. Group findings by severity (High → Medium → Low)
+3. For each finding: describe what is wrong, what the correct value should be, and what action to take
+4. Identify which items can be automated via psPAS vs. which require manual PVWA action
+5. Generate a remediation plan at `stages/04_remediation/output/remediation_plan.md`
+
+The remediation plan is a decision document — it tells you what to do, not how to script it. To automate eligible items, take the plan to the `psPAS/` pipeline. To fix things manually, work through the Priority 1–3 action tables directly in PVWA.
+
 ---
 
 ## Using Templates
@@ -158,6 +184,11 @@ The AI will load the matching template, show you the SQL with any customization 
 | **Safe Summary** | Per-safe rollup: age, counts, last activity |
 | **Orphaned Accounts** | Accounts missing critical properties (platform, address, username) |
 | **Password Age** | Accounts with overdue password rotations |
+| **User Lifecycle** | Vault users who are inactive, disabled, expired, or have never logged in |
+| **Group Membership** | Group roster with member details; empty group detection |
+| **Request Audit** | Access request history by safe; confirmation and rejection tracking |
+| **PSM Session Activity** | Accounts with PSM sessions; surfaces missing or failed recordings |
+| **Recently Onboarded Accounts** | Accounts created in the last N days; post-onboarding verification |
 
 Each template is fully customizable — thresholds, safe filters, and output columns can all be adjusted based on your request.
 
@@ -208,19 +239,22 @@ The AI will target the right database automatically.
 
 ```
 EVD/
+├── QUICKSTART.md            <-- Start here if you're new
 ├── USAGE.md                 <-- You are here
 ├── EVD.psd1                 <-- Connection config (fill in server names)
 ├── scripts/
 │   └── Invoke-EVDQuery.ps1  <-- The query execution script
 ├── references/              <-- Schema, rules, and query templates (AI reads these)
-│   └── query_templates/     <-- Pre-built SQL for common tasks
+│   └── query_templates/     <-- 13 pre-built SQL templates for common tasks
 └── stages/
     ├── 01_sql_gen/
     │   └── output/          <-- Generated SQL lands here
     ├── 02_data_fetch/
     │   └── output/          <-- CSV data lands here
-    └── 03_parsing/
-        └── output/          <-- Compliance report lands here
+    ├── 03_parsing/
+    │   └── output/          <-- Compliance report lands here
+    └── 04_remediation/
+        └── output/          <-- Remediation plan lands here
 ```
 
 ---
@@ -235,6 +269,8 @@ EVD/
 | Access denied | Missing AD group membership | Request the appropriate AD group (see table above) |
 | Zero rows returned | Query filters too narrow, or targeting wrong environment | Check your request and try `-Environment Dev` for testing |
 | CSV has garbled characters | Excel encoding mismatch | Import via Data > From Text/CSV in Excel, select UTF-8 |
+| Stage 3 produces no findings | Either data is clean (good) or the query didn't include the columns Stage 3 needs | If unexpected, re-check Stage 2 CSV has AccountName and SafeName columns; confirm naming_standards.md is filled in |
+| Stage 4 plan has no High items | No High-severity violations in the compliance report | This is good — work through the Medium findings next, or skip Stage 4 if findings are acceptable |
 
 ---
 

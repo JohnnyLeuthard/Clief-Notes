@@ -17,6 +17,11 @@
 | 6 | [Safe Summary](06_safe_summary.md) | Inventory | CASafes, CAFiles | — | 06_safe_summary.md |
 | 7 | [Orphaned Accounts](07_orphaned_accounts.md) | Hygiene | CAFiles, CAObjectProperties | — | 07_orphaned_accounts.md |
 | 8 | [Password Age](08_password_age.md) | Operations | CAFiles, CAObjectProperties | datetime_handling.md | 08_password_age.md |
+| 9 | [User Lifecycle](09_user_lifecycle.md) | Access Review | CAUsers | — | 09_user_lifecycle.md |
+| 10 | [Group Membership](10_group_membership.md) | Access Review | CAGroups, CAGroupMembers, CAUsers | — | 10_group_membership.md |
+| 11 | [Request Audit](11_request_audit.md) | Operations | CARequests, CAConfirmations | — | 11_request_audit.md |
+| 12 | [PSM Session Activity](12_psm_session_activity.md) | Operations | CAFiles, CAObjectProperties | datetime_handling.md (if filtering on PSMStartTime/EndTime) | 12_psm_session_activity.md |
+| 13 | [Recently Onboarded Accounts](13_recently_onboarded.md) | Inventory | CAFiles, CAObjectProperties | — | 13_recently_onboarded.md |
 
 ---
 

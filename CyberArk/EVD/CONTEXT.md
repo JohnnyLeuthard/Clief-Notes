@@ -7,12 +7,14 @@ This sub-workspace transforms natural language requests into validated vault dat
 1. **01_sql_gen** — Translates plain English requests into SQL queries using the database schema.
 2. **02_data_fetch** — Executes the SQL via local PowerShell scripts and exports results to CSV.
 3. **03_parsing** — Analyzes the CSV output against vault naming standards to identify compliance issues.
+4. **04_remediation** — Translates Stage 3 compliance findings into a prioritized, actionable remediation plan.
 
 ## Execution Logic
 
-- **Sequential**: Stage 02 cannot begin until Stage 01 has produced a verified SQL artifact.
+- **Sequential**: Stage 02 cannot begin until Stage 01 has produced a verified SQL artifact. Stage 04 cannot begin until Stage 03 has produced a compliance report.
 - **Output-as-Input**: Each stage's `output/` folder is the Layer 4 input for the next stage.
 - **Review Gates**: Every stage stops after writing its output. Inspect the `output/` directory before triggering the next stage.
+- **Stage 4 is optional**: Proceed to Stage 4 only when the user wants a prioritized remediation plan. If the user wants to go directly to psPAS execution, they can take the Stage 3 output there instead.
 
 ## References
 

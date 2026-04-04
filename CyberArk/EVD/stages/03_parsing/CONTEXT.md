@@ -21,4 +21,8 @@
 
 ## Review Gate
 
-Stop here. The human reviews the compliance report. Non-compliant accounts identified here may become inputs for the `psPAS` remediation pipeline at `../../psPAS/CONTEXT.md`.
+Stop here. The human reviews the compliance report.
+
+- **To plan remediation**: Proceed to Stage 4 (`../04_remediation/`) to generate a prioritized remediation plan (with recommended actions, severity grouping, and automation routing) before deciding whether to use psPAS.
+- **To go directly to psPAS**: Non-compliant accounts identified here can also be taken directly to `../../psPAS/CONTEXT.md` as input.
+- **If no compliance issues**: If the compliance report shows zero findings, the pipeline is complete.
