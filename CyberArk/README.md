@@ -14,13 +14,14 @@ Before running any pipeline, fill in your environment configuration. Claude uses
 
 This file has three tables to fill in:
 
-**Deployment Model** — for each tier (DEV / UAT / PROD), delete the model that doesn't apply:
+**Deployment Model** — for each tier (DEV / UAT / PROD), type one of:
 - `Self-hosted` — you manage the vault servers on-prem
 - `Privilege Cloud` — CyberArk-hosted SaaS tenant
+- `N/A` — that tier doesn't exist in your environment
 
-**Component Versions** — fill in the version number for each deployed component. Any component not in your environment should stay as `N/A`. Pre-set `N/A` defaults (PSMP, PTA, Conjur, etc.) are intentional — leave them unless you actually have those components.
+**Component Versions** — the DEV, UAT, and PROD columns are where you enter the version number for each component in that tier. Any component not deployed should be set to `N/A`. Pre-set `N/A` defaults (PSMP, PTA, Conjur, etc.) are intentional — leave them unless you have those components.
 
-**Authentication** — for each tier, delete the auth methods that don't apply and set MFA to `Yes` or `No`.
+**Authentication** — for each tier, enter the auth method (`CyberArk`, `LDAP`, `SAML`, or `PKI`) and set MFA Enforced to `Yes` or `No`. Use `N/A` if the tier doesn't exist.
 
 ### 2. Fill in Client Tools
 

@@ -9,14 +9,16 @@
 
 ## Deployment Model
 
-| Environment | Model                        | Tier | Notes                          |
-|------------|------------------------------|------|--------------------------------|
-| DEV        | Self-hosted / Privilege Cloud | dev  |                                |
-| UAT        | Self-hosted / Privilege Cloud | uat  |                                |
-| PROD       | Self-hosted / Privilege Cloud | prod |                                |
+Enter `Self-hosted` or `Privilege Cloud` for each tier. Use `N/A` if that tier does not exist.
 
-> Delete the model that does not apply per row. REST API paths, cmdlet behavior, and
-> feature availability differ significantly between self-hosted and Privilege Cloud.
+| Environment | Model       | Tier | Notes                          |
+|------------|-------------|------|--------------------------------|
+| DEV        |             | dev  |                                |
+| UAT        |             | uat  |                                |
+| PROD       |             | prod |                                |
+
+> REST API paths, cmdlet behavior, and feature availability differ significantly between
+> Self-hosted and Privilege Cloud.
 
 ---
 
@@ -47,14 +49,15 @@
 
 ## Authentication
 
-| Environment | Method                                   | MFA Enforced | Notes                        |
-|------------|------------------------------------------|--------------|------------------------------|
-| DEV        | CyberArk native / LDAP / SAML / PKI     | Yes / No     |                              |
-| UAT        | CyberArk native / LDAP / SAML / PKI     | Yes / No     |                              |
-| PROD       | CyberArk native / LDAP / SAML / PKI     | Yes / No     |                              |
+Enter the auth method used for each tier (`CyberArk`, `LDAP`, `SAML`, or `PKI`) and set MFA to `Yes` or `No`. Use `N/A` if that tier does not exist.
 
-> Delete the methods and values that do not apply. Auth method affects which
-> `New-PASSession` parameters are required and how session setup works.
+| Environment | Method | MFA Enforced | Notes                        |
+|------------|--------|--------------|------------------------------|
+| DEV        |        |              |                              |
+| UAT        |        |              |                              |
+| PROD       |        |              |                              |
+
+> Auth method affects which `New-PASSession` parameters are required and how session setup works.
 
 ---
 
