@@ -6,6 +6,20 @@ You are in the root of a CyberArk operations workspace. This workspace uses the 
 
 Read `CONTEXT.md` in this directory to route the user's request to the correct sub-workspace. Do not load files from sub-workspaces until you have routed.
 
+## Environment Configuration
+
+Before making any version-sensitive suggestion (cmdlets, REST API paths, feature availability),
+load `_config/environment.md`. It is the authoritative source for:
+- Which CyberArk components are deployed and their versions
+- Deployment model (self-hosted vs Privilege Cloud) per environment tier
+- Client tool versions (psPAS, PowerShell, Python)
+- Authentication methods and MFA enforcement
+
+Do not suggest capabilities that require a higher version than listed. Do not reference
+components marked `N/A`. If a version field is blank, ask before giving version-dependent guidance.
+
+---
+
 ## Protocol Rules
 
 - **Layered loading**: Only read the CONTEXT.md for the stage you are currently in. Do not preload files from other stages.
